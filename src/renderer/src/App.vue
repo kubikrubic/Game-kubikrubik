@@ -1,30 +1,18 @@
+<script setup lang="ts">
+import { useNavigationStore } from './stores/navigation'
+import MainMenuView from './views/MainMenuView.vue'
+
+const navigation = useNavigationStore()
+</script>
 
 <template>
-  <main class="app">
-    <h1>ENDLOCK</h1>
-    <p>Core Engine Prototype</p>
+  <MainMenuView v-if="navigation.currentScreen === 'menu'" />
+
+  <main v-else>
+    <h2>{{ navigation.currentScreen }}</h2>
+
+    <button @click="navigation.navigateTo('menu')">
+      Назад
+    </button>
   </main>
 </template>
-
-<style scoped>
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-h1 {
-  font-size: 64px;
-  letter-spacing: 12px;
-  color: #e5e5e5;
-}
-
-p {
-  margin-top: 16px;
-  font-size: 18px;
-  color: #888888;
-}
-</style>
